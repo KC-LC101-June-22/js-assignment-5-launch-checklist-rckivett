@@ -17,11 +17,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   
+//should take in a string as a parameter and return "empty", "not a number" or "is a number"  as appropriate
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
+   //update the shuttle requirements as described below.  Make sure to call your formSubmission() function at the appropriate time in your script.js file
+   //document.getElementByID("")
+   //update id faultyItems if something is not ready for launch.  using temperate literals, update the li elements pilotStatus and copilotStatus to include the pilot's name and the co-pilot's name
 }
 
 async function myFetch() {

@@ -1,8 +1,24 @@
 // Write your JavaScript code here!
 
+window.addEventListener("load", function(){
+        let form = document.quertySelector("form");
+        form.addEventListener("submit", function(event) {
+            let pilotNameInput = document.quertySelector("input[pilot=pilotName]");
+            let copilotNameInput = document.querySelector("input[copilot=copilotName]");
+            let fuelLevelInput = document.querySelector("input[fuel=fuelLevel]");
+            let cargoMassInput = document.querySelector("input[cargo=cargoMass]");
+            if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput === ""){
+                alert("All fields are required");
+            }
+            else if (pilotNameInput.value === !NaN || copilotNameInput.value === !NaN || fuelLevelInput.value === Number.isInteger || cargoMassInput === Number.isInteger){
+                return;
+            }
+        })
+    });
+
 window.addEventListener("load", function() {
 
-   let listedPlanets;
+   let listedPlanets = planetsReturned;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse;
    listedPlanetsResponse.then(function (result) {
