@@ -1,18 +1,18 @@
 // Write your JavaScript code here!
 
 window.addEventListener("load", function(){
-        let form = document.quertySelector("form");
+        let form = document.querySelector("testForm");
         form.addEventListener("submit", function(event) {
-            let pilotNameInput = document.quertySelector("input[pilot=pilotName]");
-            let copilotNameInput = document.querySelector("input[copilot=copilotName]");
-            let fuelLevelInput = document.querySelector("input[fuel=fuelLevel]");
-            let cargoMassInput = document.querySelector("input[cargo=cargoMass]");
-            if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput === ""){
+            let pilotNameInput = document.querySelector("input[pilot=pilotName]");
+            let copilotNameInput = document.querySelector("input[name=copilotName]");
+            let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
+            let cargoMassInput = document.querySelector("input[name=cargoMass]");
+            if (pilotNameInput.value === ""){
                 alert("All fields are required");
             }
-            else if (pilotNameInput.value === !NaN || copilotNameInput.value === !NaN || fuelLevelInput.value === Number.isInteger || cargoMassInput === Number.isInteger){
+            /*else if (pilotNameInput.value === !NaN || copilotNameInput.value === !NaN || fuelLevelInput.value === Number.isInteger || cargoMassInput === Number.isInteger){
                 return;
-            }
+            }*/
         })
     });
 
