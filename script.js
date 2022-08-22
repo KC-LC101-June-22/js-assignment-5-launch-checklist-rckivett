@@ -11,13 +11,13 @@ window.addEventListener("load", function () {
         if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
             alert("All fields are required.  Pilot and Co-pilot fields should be text; Fuel Level and Cargo Mass fields should be numbers.");
         } else {
-            formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+            formSubmission(form, list, pilotNameInput, copilotNameInput, fuelLevelInput, cargoLevelInput);
 
         }
     })
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-    let listedPlanetsResponse;
+    let listedPlanetsResponse = document.planetsReturned;
     listedPlanetsResponse.then(function (result) {
         listedPlanets = result;
         console.log(listedPlanets);

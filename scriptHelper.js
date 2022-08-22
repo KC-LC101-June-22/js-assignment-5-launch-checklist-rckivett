@@ -69,7 +69,7 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-    let x = Math.floor(Math.random()*json.length);
+    let index = Math.floor(Math.random()*json.length);
     missionTarget.innerHTML =`
     <h2>Mission Destination</h2>
     <ol>
