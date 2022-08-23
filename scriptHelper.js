@@ -20,7 +20,19 @@ function validateInput(input) {
 }
 //mission target div is missionTarget
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-
+    let missionPlanet = document.getElementById("missionTarget");
+    missionPlanet.innerHTML =
+    `
+    <h2>Mission Destination</h2>
+    <ol>
+        <li>Name: ${name}</li>
+        <li>Diameter: ${diameter}</li>
+        <li>Star: ${star}</li>
+        <li>Distance from Earth: ${distance}</li>
+        <li>Number of Moons: ${moons}</li>
+    </ol>
+    <img src = "${imageUrl}">
+`
     // Here is the HTML formatting for our mission target div.
     /*
                  <h2>Mission Destination</h2>
@@ -34,52 +46,45 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                  <img src="">
     */
 }
-
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) { //cargoMass was originally cargoLevel but it didn't make sense to me
-    document.pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch!`
-    copilotStatus.innerHTML = `Copilot ${copilot.value} is ready for launch!`
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+    let fuelLevelStatus = document.getElementById("fuelStatus");
+    let cargoMassStatus = document.getElementById("cargoStatus");
+    let launchStatus = document.getElementById("launchStatus");
+    pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`
+    copilotStatus.innerHTML = `Copilot ${copilot.value} is ready for launch`
     if (fuelLevel.value < 10000) {
-        faultyItems.style.visibility = "visible";
-        fuelStatus.innerHTML = `Not enough fuel for the journey. Fuel levels cannot be less than 10,000 liters.`;
+        list.style.visibility = "visible";
+        fuelLevelStatus.innerHTML = `Not enough fuel for the journey. Fuel levels cannot be less than 10,000 liters.`;
         launchStatus.innerHTML = `Shuttle not ready for launch`;
         launchStatus.style.color = "red";
+        if (cargoMass.value > 10000){
+            cargoMassStatus.innerHTML = `Too much mass for shuttle takeoff.  Mass cannot be more than 10,000 kilograms.`;
+        }
     } else if (cargoMass.value > 10000) {
-        faultyItems.style.visibility = "visible";
-        cargoMass.innerHTML = `Too much mass for shuttle takeoff.  Mass cannot be more than 10,000 kilograms.`;
+        list.style.visibility = "visible";
+        cargoMassStatus.innerHTML = `Too much mass for shuttle takeoff.  Mass cannot be more than 10,000 kilograms.`;
         launchStatus.innerHTML = `Shuttle not ready for launch`
         launchStatus.style.color = "red";
     } else {
-        fuelStatus.innerHTML = `Fuel level high enough for launch`;
-        cargoMass.innerHTML = `Cargo mass low enough for launch`;
+        list.style.visibility = "visible";
+        fuelLevelStatus.innerHTML = `Fuel level high enough for launch`;
+        cargoMassStatus.innerHTML = `Cargo mass low enough for launch`;
         launchStatus.innerHTML = `Shuttle is ready for launch`;
         launchStatus.style.color = "green";
     }
 }
-
 //update the shuttle requirements as described below.  Make sure to call your formSubmission() function at the appropriate time in your script.js file
-
 async function myFetch() {
-    let planetsReturned;
-
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+    let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
         return response.json()
     });
-
     return planetsReturned;
 }
-
 function pickPlanet(planets) {
-    let index = Math.floor(Math.random()*json.length);
-    missionTarget.innerHTML =`
-    <h2>Mission Destination</h2>
-    <ol>
-        <li>Name: ${json[index].name}</li>
-        <li>Diameter: ${json[index].diameter}</li>
-        <li>Star: ${json[index].star}</li>
-        <li>Distance from Earth: "${json[index].distance}</li>
-        <li>Number of Moons: "${json[index].moons}<li>
-    <image: src = "${json[index].image}">
-`
+    let planetPicked = Math.floor(Math.random()*planets.length);
+    return planets[planetPicked];
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
