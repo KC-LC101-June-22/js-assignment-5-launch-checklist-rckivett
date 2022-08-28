@@ -9,14 +9,22 @@ window.addEventListener("load", function () {
     let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
     let cargoMassInput = document.querySelector("input[name=cargoMass]");
     let orderedList = document.getElementById("faultyItems");
-    
-    
-    
+
+
+
     form.addEventListener("submit", function () {
         if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
             alert("All fields are required.  Pilot and Co-pilot fields should be text; Fuel Level and Cargo Mass fields should be numbers.");
             event.preventDefault();
-        } else {
+        } else if (!isNaN(pilotNameInput.value) || !isNaN(pilotNameInput.value)) {
+            alert("Pilot and Co-pilot fields can not be a number.");
+            event.preventDefault();
+        }
+        else if(isNaN(fuelLevelInput.value) || isNaN(cargoMassInput.value)){
+            alert("Fuel level and Cargo mass fields must be a number.");
+            event.preventDefault();
+        }
+        else {
             formSubmission(window.document, orderedList, pilotNameInput, copilotNameInput, fuelLevelInput, cargoMassInput);
             event.preventDefault();
         }
